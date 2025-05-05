@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: -10;
+    }
+
+    .gradient-layer {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom right, #6b7280, #4b5563, #374151);
+      opacity: 0.9;
+    }
+
+    .pattern-layer {
+      position: absolute;
+      inset: 0;
+      background-image: url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 80 80%22%3E%3Cpath fill=%22%23fff%22 fill-opacity=%22.05%22 d=%22M14 16H9v-2h5V9h2v5h5v2h-5v5h-2v-5zm-1-9H4V1h9v6zm-9 9h9v9H4v-9zm18 0h9v9h-9v-9zm9-9h-9V1h9v6zm-10 0H3V1h9v6zm1 19H3v9h9v-9zm9-10h-9v9h9v-9zm-10 0H3v9h9v-9zm20-9h9v9h-9V7zm-10 0h9v9h-9V7zm10-7h9v6h-9V0zm-10 0h9v6h-9V0zm10 36h9v9h-9v-9zm-10 0h9v9h-9v-9zm10-9h9v8h-9v-8zm-10 0h9v8h-9v-8zm-9 17h9v9h-9v-9zm-10 0h9v9H4v-9zm19-9h9v9h-9v-9zm-19 0h9v9H4v-9z%22%3E%3C/path%3E%3C/svg%3E');
+    }
+
+    .overlay-layer {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .form-box {
+      background-color: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      padding: 40px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 360px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+
+    .form-box h2 {
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: white;
+    }
+
+    .underline {
+      width: 30px;
+      height: 4px;
+      background-color: #f6ae56;
+      margin: 0 auto 20px;
+      border-radius: 2px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 0.95em;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 6px;
+      background-color: rgba(255, 255, 255, 0.15);
+      color: white;
+      font-size: 1em;
+      margin-bottom: 10px;
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to right, #6b7280, #4b5563);
+      border: none;
+      border-radius: 9999px;
+      font-weight: bold;
+      font-size: 1em;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #4b5563, #374151);
+      transform: translateY(-1px);
+    }
+
+    .login-text {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 0.9em;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .login-text a {
+      color: #91b3ff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .error-message {
+      color: #ff6b6b;
+      font-size: 0.9em;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="background">
+    <div class="gradient-layer"></div>
+    <div class="pattern-layer"></div>
+    <div class="overlay-layer"></div>
+  </div>
+  
+  <div class="container">
+    <div class="form-box">
+      <h2>Create your account</h2>
+      <span class="underline"></span>
+      <form method="POST" action="/signup">
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="lan_hikari" required />
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="••••••••" required />
+
+        {{if .Error}}
+          <p class="error-message">{{.Error}}</p>
+        {{end}}
+
+        <button type="submit">Sign Up!</button>
+      </form>
+      <p class="login-text">Already have an account? <a href="http://localhost:8080/login">Login</a></p>
+    </div>
+  </div>
+</body>
+</html>
